@@ -3,40 +3,108 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#090a0f" />
+  <meta name="theme-color" content="#000000" />
   <title>Sonora — iPod-inspired music player</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body class="ipod-theme">
+  <div class="bg-blur"></div>
+  
   <main class="app-shell">
     <nav class="topbar">
-      <a class="brand" href="#"><span class="brand-mark">◒</span> SONORA</a>
-      <div class="top-actions"><button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☼</button><button class="profile" aria-label="Profile">RS</button></div>
+      <a class="brand" href="#"><span class="brand-mark">♫</span> SONORA</a>
+      <div class="top-actions">
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">🌐</button>
+        <button class="profile" aria-label="Profile">RS</button>
+      </div>
     </nav>
 
-    <section class="hero">
-      <div><p class="eyebrow">YOUR PERSONAL SOUNDTRACK</p><h1>Good music,<br><em>everywhere.</em></h1><p class="hero-copy">A tactile, beautiful player inspired by the classics. Bring your own library or explore a world of sound.</p></div>
-      <div class="hero-orb"><div class="orb-ring"></div><div class="orb-disc">♪</div></div>
-    </section>
-
-    <section class="player-card">
-      <div class="now-playing">
-        <div class="cover-wrap"><img id="cover" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=85" alt="Album artwork"><span class="playing-eq" id="eq"><i></i><i></i><i></i></span></div>
-        <div class="track-info"><p class="eyebrow">NOW PLAYING</p><h2 id="title">Midnight City</h2><p id="artist">M83 · Hurry Up, We're Dreaming</p><div class="progress"><div class="progress-fill" id="progressFill"></div></div><div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div></div>
+    <section class="ipod-player">
+      <div class="ipod-screen">
+        <div class="screen-inner">
+          <div class="album-display">
+            <img id="cover" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=85" alt="Album artwork">
+            <span class="playing-eq" id="eq"><i></i><i></i><i></i></span>
+          </div>
+          
+          <div class="track-details">
+            <p class="eyebrow">NOW PLAYING</p>
+            <h2 id="title">Midnight City</h2>
+            <p id="artist">M83</p>
+            
+            <div class="progress-container">
+              <div class="progress">
+                <div class="progress-fill" id="progressFill"></div>
+              </div>
+              <div class="time-row">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="controls"><button class="control-btn" id="shuffleBtn" aria-label="Shuffle">⌘</button><button class="control-btn" id="prevBtn" aria-label="Previous">◀◀</button><button class="play-btn" id="playBtn" aria-label="Play">▶</button><button class="control-btn" id="nextBtn" aria-label="Next">▶▶</button><button class="control-btn" id="repeatBtn" aria-label="Repeat">↻</button></div>
-      <audio id="audio" preload="metadata"></audio>
+
+      <div class="click-wheel">
+        <div class="wheel-center">
+          <button id="playBtn" class="wheel-play" aria-label="Play/Pause">▶</button>
+        </div>
+        <button class="wheel-btn wheel-up" id="prevBtn" aria-label="Previous">↑</button>
+        <button class="wheel-btn wheel-right" id="nextBtn" aria-label="Next">→</button>
+        <button class="wheel-btn wheel-down" id="shuffleBtn" aria-label="Shuffle">↓</button>
+        <button class="wheel-btn wheel-left" id="repeatBtn" aria-label="Repeat">←</button>
+      </div>
+
+      <audio id="audio" preload="metadata" crossorigin="anonymous"></audio>
     </section>
 
     <section class="content-grid">
-      <div class="library"><div class="section-heading"><div><p class="eyebrow">DISCOVER</p><h2>Made for you</h2></div><button class="text-btn" id="seeAll">See all <span>→</span></button></div><div class="chips"><button class="chip active" data-filter="all">All</button><button class="chip" data-filter="Chill">Chill</button><button class="chip" data-filter="Focus">Focus</button><button class="chip" data-filter="Energy">Energy</button></div><div class="track-list" id="trackList"></div></div>
-      <aside class="queue"><div class="section-heading"><div><p class="eyebrow">UP NEXT</p><h2>Your queue</h2></div><button class="more-btn" aria-label="Queue options">•••</button></div><div class="queue-art"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85" alt="Concert lights"><div><strong>Late night radio</strong><span>12 tracks · 48 min</span></div><button class="queue-play" id="queuePlay">▶</button></div><p class="tip"><span>✦</span> Pro tip<br><b>Press space</b> to play or pause</p></aside>
+      <div class="library">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">DISCOVER</p>
+            <h2>Global Radio Stations</h2>
+          </div>
+          <button class="text-btn" id="seeAll">Refresh <span>→</span></button>
+        </div>
+        <div class="chips">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="Pop">Pop</button>
+          <button class="chip" data-filter="Rock">Rock</button>
+          <button class="chip" data-filter="Jazz">Jazz</button>
+          <button class="chip" data-filter="Electronic">Electronic</button>
+        </div>
+        <div class="track-list" id="trackList">
+          <div class="loading">Loading global stations...</div>
+        </div>
+      </div>
+
+      <aside class="queue">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">UP NEXT</p>
+            <h2>Your queue</h2>
+          </div>
+          <button class="more-btn" aria-label="Queue options">⋯</button>
+        </div>
+        <div class="queue-art">
+          <img id="queueImg" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85" alt="Concert lights">
+          <div>
+            <strong id="queueTitle">Loading...</strong>
+            <span id="queueDesc">connecting to global stations</span>
+          </div>
+          <button class="queue-play" id="queuePlay">▶</button>
+        </div>
+        <p class="tip"><span>💫</span> Pro tip<br><b>Press space</b> to play • <b>Arrow keys</b> to skip</p>
+      </aside>
     </section>
-    <footer><span>SONORA / 2026</span><span>Designed for the joy of listening.</span></footer>
+
+    <footer><span>SONORA / 2026</span><span>Global music • iPod inspired • Always playing.</span></footer>
   </main>
+
   <script src="app.js"></script>
 </body>
 </html>
